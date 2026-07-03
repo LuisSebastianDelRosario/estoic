@@ -2,6 +2,8 @@ import { getDailyEntry } from "@/lib/getDailyEntry";
 import { Separator } from "@/components/ui/separator";
 import { MidnightTimer } from "@/components/MidnightTimer";
 
+export const dynamic = "force-dynamic"; // ← re-run getDailyEntry() on every request
+
 export default function DailyPage() {
   const entry = getDailyEntry();
 

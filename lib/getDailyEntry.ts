@@ -1,12 +1,29 @@
-import { entries } from "./entries";
+﻿import { entries } from "./entries";
 import { Entry } from "./types";
+
+const APP_TIMEZONE = "Asia/Manila";
+
+// Fixed 366-day layout — matches entries.ts, which always reserves Feb 29
+// as id 60 regardless of whether the current year is a leap year.
+const CANONICAL_MONTH_DAYS = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 export function getDailyEntry(): Entry {
   const now = new Date();
-  const start = new Date(now.getFullYear(), 0, 0);
-  const diff = now.getTime() - start.getTime();
-  const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    timeZone: APP_TIMEZONE,
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  });
+  const parts = formatter.formatToParts(now);
+  const month = Number(parts.find(p => p.type === "month")?.value); // 1–12
+  const day = Number(parts.find(p => p.type === "day")?.value);     // 1–31
 
-  // fallback to first entry if day exceeds available entries
-  return entries[dayOfYear - 1] ?? entries[0];
+  let index = 0;
+  for (let m = 0; m < month - 1; m++) {
+    index += CANONICAL_MONTH_DAYS[m];
+  }
+  index += day - 1;
+
+  return entries[index] ?? entries[0];
 }
