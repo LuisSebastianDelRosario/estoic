@@ -58,7 +58,7 @@ export function MidnightTimer() {
           letterSpacing: "-0.05em",
           color: "rgba(30, 30, 30, 0.67)",
           fontSize: "0.700rem",
-          marginTop: "1rem",
+          marginTop: "0.2rem",
         }}
       >
         developed by:{" "}
