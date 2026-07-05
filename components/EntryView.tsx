@@ -15,7 +15,7 @@ export function EntryView({ todayEntry, todayDate }: EntryViewProps) {
   const [entry, setEntry] = React.useState<Entry>(todayEntry);
 
   return (
-    <main className="min-h-screen w-full flex flex-col items-center pt-16 pb-32">
+    <main className="min-h-screen w-full flex flex-col items-center pt-6 pb-32">
       <div className="max-w-2xl w-full mx-auto px-8">
 
         <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "2rem" }}>
