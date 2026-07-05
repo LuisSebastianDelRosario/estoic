@@ -49,3 +49,15 @@ body {
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
 }
+
+
+
+::selection {
+  background-color: #1E1E1E;
+  color: #EBDBBC;
+}
+
+::-moz-selection {
+  background-color: #1E1E1E;
+  color: #EBDBBC;
+}
